@@ -10,7 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
-  // app.use(helmet());
+  app.use(helmet());
   app.setGlobalPrefix('v1');
 
   const usersService = app.get(UserAdminService);
