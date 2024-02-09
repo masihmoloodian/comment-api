@@ -10,7 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
-  app.use(helmet());
+  // app.use(helmet());
   app.setGlobalPrefix('v1');
 
   const usersService = app.get(UserAdminService);
@@ -22,7 +22,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addBearerAuth()
     .build();
-    
+
   const document = SwaggerModule.createDocument(app, documentBuilder);
   SwaggerModule.setup('docs', app, document);
 
@@ -43,8 +43,8 @@ async function bootstrap() {
 }
 
 async function createSuperAdminUser(usersService: UserAdminService) {
-  const email = process.env.SUPER_ADMIN_EMAIL
-  await usersService.createAdminUser(email)
+  const email = process.env.SUPER_ADMIN_EMAIL;
+  await usersService.createAdminUser(email);
 }
 
 bootstrap();
