@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  pg:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - '2286:5432'
+    volumes:
+      - pg:/var/lib/postgresql/data
+  
+volumes:
+  pg:
